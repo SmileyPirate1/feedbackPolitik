@@ -1,8 +1,8 @@
+require('dotenv').config();
 const app = require('./folketinget_app/app.js');
-const port = 3000
-
+const PORT = process.env.PORTM
 //Server.js runs the server.
 
-app.listen(port, () => {
-    console.log(`Serveren kører på http://localhost:${port}`);
+app.listen(PORT || 3000, () => {
+    console.log(`Serveren kører på http://localhost:${PORT}`);
 });

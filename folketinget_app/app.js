@@ -7,6 +7,7 @@ const logger = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler.js');
 const mongoose = require("mongoose");
 const path = require("path");
+
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use(morgan('dev'));
@@ -20,7 +21,7 @@ app.use(errorHandler); //Should always be last, is for error 500, is a default i
 //DB connection, if it cannot connect check if the name "folketingetDB" is correct
 //127.0.0.1:27017. is for local Host.
 //Can remove the .then it is mostly for testing.
-mongoose.connect('mongodb://127.0.0.1:27017/folketingetDB')
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB tilsluttet'))
     .catch(err => console.error('MongoDB fejl:', err));
 
