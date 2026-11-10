@@ -20,7 +20,7 @@ async function getEntryByid(id) {
     if (!entry) {
         throw createError (404, `id must be an invalid id: ${id}`);
     }
-    return entry;
+    return structuredClone(entry);
 }
 async function updateEntry(id, {name, parti, position }) {
     checkId(id);
@@ -36,7 +36,7 @@ async function updateEntry(id, {name, parti, position }) {
     if (!entry) {
         throw createError (404, `entry not found ${id}`);
     }
-    return entry;
+    return structuredClone(entry);
 
 }
 async function deleteEntry(id) {
@@ -124,7 +124,7 @@ async function saveEntry(FolketingsMedlemmer){
 }
 
 async function getAllPersoner() {
-    return FolketingsMedlemmer.find();
+    return structuredClone(FolketingsMedlemmer.find());
 }
 
 module.exports = {saveEntry, getAllPersoner, getEntryByid, deleteEntry, updateEntry}
