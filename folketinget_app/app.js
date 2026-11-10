@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const personRoutes = require('./routes/personRoutes.js');
+const portfolioRoutes = require('./routes/politikerRoutes.js');
 const logger = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler.js');
 const mongoose = require("mongoose");
@@ -12,6 +13,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(logger);
 app.use('/api', personRoutes);
+app.use('/api', portfolioRoutes);
 app.use(errorHandler); //Should always be last, is for error 500, is a default if everything goes wrong.
 
 
