@@ -10,7 +10,7 @@ function createError(status, message) {
 
 function checkId(id) {
     if (!mongoose.isValidObjectId(id)) {
-        throw createError (`id must be an invalid id.`);
+        throw createError (`id is not a valid id.`);
     }
 }
 
@@ -18,7 +18,7 @@ async function getEntryByid(id) {
     checkId(id);
     const entry = await FolketingsMedlemmer.findById(id)
     if (!entry) {
-        throw createError (404, `id must be an invalid id: ${id}`);
+        throw createError (404, `Could not find entry with id of : ${id}`);
     }
     return structuredClone(entry);
 }
@@ -124,7 +124,7 @@ async function saveEntry(FolketingsMedlemmer){
 }
 
 async function getAllPersoner() {
-    return structuredClone(FolketingsMedlemmer.find());
+    return FolketingsMedlemmer.find().lean();
 }
 
 module.exports = {saveEntry, getAllPersoner, getEntryByid, deleteEntry, updateEntry}

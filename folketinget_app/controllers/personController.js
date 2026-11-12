@@ -17,7 +17,7 @@ exports.createPerson = async (req, res) => {
 
 exports.getAllPersons = async (req, res) => {
     const data = await politikerService.getAllPersoner()
-    res.status(200).json({data});
+    res.status(200).json(structuredClone(data));
 }
 
 exports.getOnePersonById = async (req, res) => {
