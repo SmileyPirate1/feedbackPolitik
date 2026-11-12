@@ -28,3 +28,5 @@ async function get(path) {
         throw new apiError(502, `Kunne ikke finde api'et`);
     }
 }
+
+module.exports = get;
